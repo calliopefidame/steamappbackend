@@ -1,18 +1,14 @@
 const app = require('express')();
 const http = require('http').createServer(app);
-const cors = require('cors');
 
-app.use(cors());
-
-app.get('/', (req, res) => {
-    res.send('hello world');
+app.get('/', (req,res)=>{
+    res.status(200).send('hello world');
 });
 
-var steam = require('./routes/steam');
-app.use('/steam', steam);
-var person = require('./routes/person');
-app.use('/person', person);
+app.get('/error', (req,res)=>{
+    res.status(500).send('une erreur est survenu :D');
+});
 
-http.listen(3000, () => {
-    console.log('listening on 3000');
+http.listen(80, ()=>{
+    console.log('serveur listening on 80');
 })
